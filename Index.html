@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONJURO — La fiesta de reggaeton que viene a Santiago</title>
+  <meta name="description" content="Una fiesta donde el perreo es ritual. Santiago, Chile.">
+  <meta property="og:title" content="CONJURO SCL">
+  <meta property="og:description" content="Una fiesta donde el perreo es ritual.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --deep: #050a0e;
+      --navy: #0a1520;
+      --blue: #4fc3f7;
+      --blue-glow: #00b4d8;
+      --blue-dim: #1a4a6e;
+      --white: #ffffff;
+      --gray: #8899aa;
+      --border: rgba(79, 195, 247, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+      backdrop-filter: blur(2px);
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 120px 24px 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 60%, rgba(0, 180, 216, 0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 30% 40%, rgba(79, 195, 247, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 70% 30%, rgba(0, 180, 216, 0.06) 0%, transparent 60%),
+        var(--deep);
+    }
+
+    /* Animated grid overlay */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(79,195,247,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,195,247,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-profile {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .hero-avatar-ring {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--blue-glow), rgba(79,195,247,0.3), transparent, var(--blue-glow));
+      margin: 0 auto 0;
+      position: relative;
+    }
+
+    .hero-avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,180,216,0.25) 0%, transparent 70%);
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .hero-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-avatar-fallback {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+    }
+
+    .hero-content { position: relative; }
+
+    .hero-handle {
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 24px;
+    }
+
+    .hero-logo {
+      font-size: clamp(64px, 14vw, 160px);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      line-height: 0.9;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ffffff 0%, #b0d4e8 50%, var(--blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .hero-logo::after {
+      content: 'CONJURO';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #ffffff 0%, #b0d4e8 50%, var(--blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: blur(20px);
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    .hero-symbol {
+      font-size: clamp(20px, 4vw, 36px);
+      letter-spacing: 0.5em;
+      color: rgba(79,195,247,0.5);
+      margin-bottom: 32px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(13px, 2.5vw, 16px);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 40px;
+      border: 1px solid rgba(79,195,247,0.4);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(79,195,247,0.1);
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+    }
+
+    .hero-cta:hover::before { transform: translateX(0); }
+    .hero-cta:hover { border-color: var(--blue); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--gray);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--blue), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ── CONCEPT ── */
+    .concept {
+      padding: 120px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+
+    .concept-headline {
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .concept-headline span {
+      color: var(--blue);
+      display: block;
+    }
+
+    .concept-body {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--gray);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      font-weight: 300;
+    }
+
+    .concept-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--blue-glow);
+      margin: 0 auto;
+      box-shadow: 0 0 12px var(--blue-glow);
+    }
+
+    /* ── PILLARS ── */
+    .pillars {
+      padding: 0 24px 120px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .pillar {
+      background: var(--black);
+      padding: 48px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .pillar:hover { background: rgba(79,195,247,0.03); }
+
+    .pillar-number {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--blue-dim);
+      margin-bottom: 20px;
+    }
+
+    .pillar-title {
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .pillar-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray);
+      font-weight: 300;
+    }
+
+    /* ── INSTAGRAM GRID ── */
+    .insta-section {
+      padding: 80px 24px 120px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .insta-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .insta-title { font-size: 22px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .insta-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+    .insta-link:hover { opacity: 0.7; }
+
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+
+    .insta-item {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--navy);
+      cursor: pointer;
+    }
+
+    .insta-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      filter: saturate(0.85) brightness(0.9);
+    }
+
+    .insta-item:hover img {
+      transform: scale(1.06);
+      filter: saturate(1) brightness(1);
+    }
+
+    .insta-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,180,216,0.15);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .insta-item:hover .insta-item-overlay { opacity: 1; }
+
+    .insta-ig-icon {
+      color: white;
+      font-size: 24px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 100px 24px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--blue-dim));
+    }
+
+    .contact-headline {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .contact-sub {
+      font-size: 15px;
+      color: var(--gray);
+      margin-bottom: 48px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 48px;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      min-width: 280px;
+      justify-content: center;
+    }
+
+    .contact-btn-primary {
+      background: var(--blue-glow);
+      color: var(--black);
+    }
+
+    .contact-btn-primary:hover {
+      background: var(--blue);
+      box-shadow: 0 0 40px rgba(0,180,216,0.4);
+      transform: translateY(-2px);
+    }
+
+    .contact-btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--white);
+    }
+
+    .contact-btn-secondary:hover {
+      border-color: rgba(79,195,247,0.4);
+      background: rgba(79,195,247,0.05);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+    }
+
+    .footer-right {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 11px; }
+      .hero-stats { gap: 28px; }
+      .insta-grid { gap: 2px; }
+      footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+      .pillars { grid-template-columns: 1fr; }
+      .insta-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+      .hero-logo { letter-spacing: 0.08em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">CONJURO</a>
+    <div class="nav-links">
+      <a href="#concepto">Concepto</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+
+    <div class="hero-profile">
+      <div class="hero-avatar-ring">
+        <img
+          src="assets/profile.jpg"
+          alt="CONJURO SCL"
+          class="hero-avatar"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <div class="hero-avatar-fallback" style="display:none;">C</div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-handle">@conjuro.scl · Santiago, Chile</p>
+
+      <h1 class="hero-logo">CONJURO</h1>
+
+      <p class="hero-symbol">○ ○</p>
+
+      <p class="hero-tagline">Una fiesta donde el perreo es ritual</p>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">291</div>
+          <div class="stat-label">Seguidores</div>
+        </div>
+        <div class="stat" style="border-left: 1px solid rgba(79,195,247,0.15); border-right: 1px solid rgba(79,195,247,0.15); padding: 0 48px;">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Publicaciones</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">SCL</div>
+          <div class="stat-label">Santiago</div>
+        </div>
+      </div>
+
+      <a href="https://www.instagram.com/conjuro.scl/" target="_blank" class="hero-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Seguir en Instagram
+      </a>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- CONCEPT -->
+  <section class="concept" id="concepto">
+    <p class="section-label">El ritual</p>
+    <h2 class="concept-headline">
+      La fiesta de reggaeton
+      <span>que viene a Santiago</span>
+    </h2>
+    <p class="concept-body">
+      CONJURO nace para traer a Santiago una experiencia distinta: la música que ya conoces,
+      el perreo que no para, y una vibra que se siente desde el primer beat.
+      Artistas que suenan sí o sí. Una noche que se queda grabada.
+    </p>
+    <div class="concept-divider"></div>
+  </section>
+
+  <!-- PILLARS -->
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-number">01</div>
+      <div class="pillar-title">La Música</div>
+      <p class="pillar-text">Reggaeton en su máxima expresión. Desde los clásicos de Musicólogo y Menes hasta los artistas que definen la escena hoy.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-number">02</div>
+      <div class="pillar-title">El Ambiente</div>
+      <p class="pillar-text">Una atmósfera que te envuelve desde que entras. Oscuro, intenso, y diseñado para que el cuerpo se mueva solo.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-number">03</div>
+      <div class="pillar-title">El Ritual</div>
+      <p class="pillar-text">Más que una fiesta. Una experiencia colectiva donde el perreo deja de ser baile y se convierte en ritual.</p>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM GALLERY -->
+  <section class="insta-section" id="galeria">
+    <div class="insta-header">
+      <h2 class="insta-title">El Feed</h2>
+      <a href="https://www.instagram.com/conjuro.scl/" target="_blank" class="insta-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @conjuro.scl
+      </a>
+    </div>
+
+    <div class="insta-grid">
+      <!-- Posts from Instagram -->
+      <a href="https://www.instagram.com/conjuro.scl/" target="_blank" class="insta-item">
+        <img src="assets/post-2.jpg" alt="CONJURO - post" loading="lazy">
+        <div class="insta-item-overlay">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" class="insta-ig-icon"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/conjuro.scl/" target="_blank" class="insta-item">
+        <img src="assets/post-3.jpg" alt="CONJURO - post" loading="lazy">
+        <div class="insta-item-overlay">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/conjuro.scl/" target="_blank" class="insta-item">
+        <img src="assets/post-4.jpg" alt="CONJURO - post" loading="lazy">
+        <div class="insta-item-overlay">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/conjuro.scl/" target="_blank" class="insta-item">
+        <img src="assets/post-5.jpg" alt="CONJURO - post" loading="lazy">
+        <div class="insta-item-overlay">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/conjuro.scl/" target="_blank" class="insta-item">
+        <img src="assets/post-6.jpg" alt="CONJURO - post" loading="lazy">
+        <div class="insta-item-overlay">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/conjuro.scl/" target="_blank" class="insta-item">
+        <img src="assets/post-7.jpg" alt="CONJURO - post" loading="lazy">
+        <div class="insta-item-overlay">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contacto">
+    <p class="section-label">Contacto</p>
+    <h2 class="contact-headline">¿Hablamos?</h2>
+    <p class="contact-sub">
+      Para consultas, eventos privados o simplemente para saber cuándo es la próxima fecha.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:conjuro.scl@gmail.com" class="contact-btn contact-btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        conjuro.scl@gmail.com
+      </a>
+      <a href="https://www.instagram.com/conjuro.scl/" target="_blank" class="contact-btn contact-btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @conjuro.scl en Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">CONJURO</div>
+    <div class="footer-right">Santiago, Chile · @conjuro.scl · 2025</div>
+  </footer>
+
+</body>
+</html>
